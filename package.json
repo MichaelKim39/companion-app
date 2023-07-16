@@ -42,6 +42,7 @@
     "typescript": "5.1.3"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.2.14"
+    "@flydotio/dockerfile": "^0.2.14",
+    "encoding": "^0.1.13"
   }
 }

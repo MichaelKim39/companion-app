@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { FormEvent, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useCompletion } from "ai/react";
 
@@ -31,6 +31,7 @@ export default function QAModal({
     stop,
     setInput,
     setCompletion,
+    error,
   } = useCompletion({
     api: "/api/" + example.llm,
     headers: { name: example.name },
@@ -78,8 +79,13 @@ export default function QAModal({
                 <div>
                   <form onSubmit={handleSubmit}>
                     <input
-                      placeholder="How's your day?"
-                      className={"w-full flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 shadow-sm focus:outline-none sm:text-sm sm:leading-6 " + (isLoading && !completion ? "text-gray-600 cursor-not-allowed" : "text-white")}                      
+                      placeholder={`Ask ${example.name} something here...`}
+                      className={
+                        "w-full flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 shadow-sm focus:outline-none sm:text-sm sm:leading-6 " +
+                        (isLoading && !completion
+                          ? "text-gray-600 cursor-not-allowed"
+                          : "text-white")
+                      }
                       value={input}
                       onChange={handleInputChange}
                       disabled={isLoading && !completion}
